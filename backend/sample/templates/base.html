@@ -3,10 +3,38 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+	
 	<title>Django | AJAX</title>
 </head>
 <body>
 	{% block body %}
 	{% endblock body %}
+
+
+<script type="text/javascript">
+	$(document).ready(function() {
+		
+		setInterval(function() {
+			$.ajax({
+				type: 'GET',
+				url: '{% url "getTodo" %}',
+				success: function(response){
+					console.log(response);
+					$('#display').empty();
+					for (let key in response.todos){
+						let temp = '<h2><li>' + response.todos[key].title + '</li></h2>';
+						$('#display').append(temp);
+					}
+				},
+				error: function(response){
+					alert('Error....')
+				}
+
+			});
+		}, 1000);
+	});
+
+</script>
 </body>
 </html>

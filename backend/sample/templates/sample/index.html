@@ -2,9 +2,6 @@
 
 {% block body %}
 	<h1>Hello World</h1>
-	<ul>
-		{% for todo in todos %}
-			<h3><li>{{todo.title}}</li></h3>
-		{% endfor %}
+	<ul id="display">
 	</ul>
 {% endblock body %}
