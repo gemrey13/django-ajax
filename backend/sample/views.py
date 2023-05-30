@@ -7,6 +7,7 @@ def index(request):
 	return render(request, 'sample/index.html', {})
 
 
+# new
 def submit(request):
 	if request.method == "POST":
 		title = request.POST['title']
