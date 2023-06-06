@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+	
+	<title>Django | AJAX</title>
+</head>
+<body>
+	{% block body %}
+	{% endblock body %}
+
+
+<script type="text/javascript">
+
+	$(document).on('submit', '#post-form', function(e){
+
+		e.preventDefault();
+
+		$.ajax({
+				type: 'POST',
+				url: '/submit/',
+				data: {
+					title:$('#title').val(),
+					csrfmiddlewaretoken:$('input[title=csrfmiddlewaretoken]').val()
+				},
+				success: function(data){
+					alert(data)
+				},
+
+			});
+		})
+	
+
+
+	$(document).ready(function() {[]
+		
+		$('#btn').on('click', function() {
+			$.ajax({
+				type: 'GET',
+				url: '{% url "getTodo" %}',
+				success: function(response){
+					// console.log(response);
+					$('#display').empty();
+					for (let key in response.todos){
+						let temp = '<h2><li>' + response.todos[key].title + '</li></h2>';
+						$('#display').append(temp);
+					}
+				},
+				error: function(response){
+					alert('Error....')
+				}
+
+			});
+		})
+
+		// setInterval(function() {
+		// 	$.ajax({
+		// 		type: 'GET',
+		// 		url: '{% url "getTodo" %}',
+		// 		success: function(response){
+		// 			console.log(response);
+		// 			$('#display').empty();
+		// 			for (let key in response.todos){
+		// 				let temp = '<h2><li>' + response.todos[key].title + '</li></h2>';
+		// 				$('#display').append(temp);
+		// 			}
+		// 		},
+		// 		error: function(response){
+		// 			alert('Error....')
+		// 		}
+
+		// 	});
+		// }, 1000);
+	});
+
+</script>
+</body>
+</html>

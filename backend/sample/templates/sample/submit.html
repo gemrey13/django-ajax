@@ -1,0 +1,13 @@
+{% extends "../base.html" %}
+
+
+{% block body %}
+	<h1>Submit Form</h1>
+
+	<form method="POST" id="post-form">
+		{% csrf_token %}
+		<p>Title: </p><input type="text" name="title"><br>
+		<button type="submit">Save</button>
+
+	</form>
+{% endblock body %}
